@@ -12,7 +12,7 @@ class MindApi():
         pass 
 
     def fetchExperiment(self, resource=None):
-        response = requests.post(url=self.url + '/api/fetchExperiment', data={
+        response = requests.post(url=self.url + '/api/v1/fetchExperiment', data={
             'resource' : {
                 'global':self.identifier,
                 'local':resource
@@ -24,8 +24,8 @@ class MindApi():
             return result['experiment'], result['status']
         return None, -1
 
-    def setExperimentWandb(experimentId, wandbId):
-        response = requests.post(url=self.url + '/api/setExperimentWandb', data={
+    def setExperimentWandb(self, experimentId, wandbId):
+        response = requests.post(url=self.url + '/api/v1/setExperimentWandb', data={
             'apiKey' : self.apiKey,
             'experimentId' : experimentId,
             'wandbId' : wandbId 
@@ -36,8 +36,8 @@ class MindApi():
             return result['status']
         return None
     
-    def concludeExperiment(experimentId, results, status):
-        response = requests.post(url=self.url + '/api/concludeExperiment', data={
+    def concludeExperiment(self, experimentId, results, status):
+        response = requests.post(url=self.url + '/api/v1/concludeExperiment', data={
             'apiKey' : self.apiKey,
             'experimentalId' : experimentId,
             'results' : results,

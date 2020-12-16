@@ -8,9 +8,9 @@ setuptools.setup(
     author_email="ashishkmr472@gmail.com",
     description="Client side cli and libraries to connect and setup     \
                 a automated distributed ML experimentation system",
-    long_description="",
-    long_description_content_type="text/markdown",
-    url="https://github.com/pypa/sampleproject",
+    # long_description="",
+    # long_description_content_type="text/markdown",
+    url="https://github.com/ashishkumar4/hiveclient",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

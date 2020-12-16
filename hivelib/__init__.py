@@ -8,16 +8,19 @@ rpc = None
 global experimentId
 experimentId = ''
 
-def init():
-    global rpc
-    rpc = xmlrpc.client.ServerProxy('http://localhost:8447')
-    data, status = rpc.getExperiment()
-    (config, resource) = data
-    if status == -2:
-        print("No experiments left, terminating...")
-        exit(0)
+def init(expId = None):
     global experimentId
-    experimentId = config['experimentId']
+    if expId == None:
+        global rpc
+        rpc = xmlrpc.client.ServerProxy('http://localhost:8447')
+        data, status = rpc.getExperiment()
+        (config, resource) = data
+        if status == -2:
+            print("No experiments left, terminating...")
+            exit(0)
+        experimentId = config['experimentId']
+    else:
+        experimentId = expId
     return config, resource
 
 def setWandb(wandbId):
@@ -30,7 +33,7 @@ def setWandb(wandbId):
 def concludeExperiment(results, status):
     global rpc 
     global experimentId
-    
+
     if type(status) == str:
         status = status.lower()
         assert status in ['success', 'error']
